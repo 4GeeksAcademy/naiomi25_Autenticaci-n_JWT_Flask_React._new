@@ -1,5 +1,6 @@
 export const initialStore=()=>{
   return{
+    loggin : false,
     message: null,
     todos: [
       {
@@ -23,7 +24,11 @@ export default function storeReducer(store, action = {}) {
         ...store,
         message: action.payload
       };
-      
+     case 'loggin':
+      return {
+        ...store,
+        loggin: action.payload
+      };
     case 'add_task':
 
       const { id,  color } = action.payload
@@ -34,5 +39,6 @@ export default function storeReducer(store, action = {}) {
       };
     default:
       throw Error('Unknown action.');
+
   }    
 }

@@ -1,6 +1,6 @@
 
 import { useState , useEffect } from "react";
-import { Profile } from "../../services/apiFetch";
+import { profileFetch } from "../../services/apiFetch";
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ export const ProfileUser =()=>{
   
   const fetchUser = async () => {
     try {
-      const data = await Profile();
+      const data = await profileFetch();
       if (!data) {
         navigate("/login");
       } else {
@@ -31,10 +31,9 @@ useEffect(() => {
 
 
    return (
-    <div>
-      <p>Bienvenido a tu perfil</p>
-      <p>Email: {userData.email}</p>
-      <p>Nombre: {userData.name}</p>
+    <div className= ' d-flex justify-content-center  aling-items-center'>
+     
+      <img  src='https://img.freepik.com/vector-premium/banner-bienvenida-vector-dibujos-animados-e-icono-pagina-bienvenida-diseno-pagina-bienvenida_678696-155.jpg'/>
     </div>
   );
 };

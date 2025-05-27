@@ -1,9 +1,10 @@
-
+import useGlobalReducer from "../front/hooks/useGlobalReducer";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 
-export const SignupFetch = async (datos) => {
+
+export const signupFetch = async (datos) => {
   try {
     const response = await fetch(backendUrl + "/api/signup", {
       method: "POST",
@@ -25,7 +26,7 @@ export const SignupFetch = async (datos) => {
     
   }
 };
-export const LoginFetch = async (usuario) => {
+export const loginFetch = async (usuario) => {
  
   try{
     const response = await fetch(backendUrl + "/api/login", {
@@ -40,12 +41,7 @@ export const LoginFetch = async (usuario) => {
     if (!response.ok)
       throw new Error ( 'hubo un error en la petición')
 
-    const data =await response.json()
-      if (data.token) {
-      localStorage.setItem("jwt-token", data.token);
-    } else {
-      console.error("No se recibió token en la respuesta");
-    }
+    const data = await response.json()
     return data
   }
   catch(error){
@@ -54,8 +50,9 @@ export const LoginFetch = async (usuario) => {
   }
 }
 
-export const Profile = async ( ) =>{
+export const profileFetch = async ( ) =>{
    const token = localStorage.getItem('jwt-token');
+  
    console.log("Token enviado:", token);
    try{
     const response = await fetch (backendUrl + "/api/profile", {

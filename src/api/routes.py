@@ -93,7 +93,7 @@ def login():
             return jsonify({'msg': 'Usuario o contraseña incorrecta'}), 400
 
 
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity= str(user.id))
         return jsonify({"token": access_token, "user_id": user.id})
 
     except Exception as error:

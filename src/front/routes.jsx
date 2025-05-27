@@ -11,7 +11,7 @@ import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { FormSignup } from "./pages/signup";
 import { Login } from "./pages/Login";
-import { Profile } from "../services/apiFetch";
+import { ProfileUser } from "./pages/Profile"
 
 
 export const router = createBrowserRouter(
@@ -31,7 +31,7 @@ export const router = createBrowserRouter(
         <Route path="/demo" element={<Demo />} />
         <Route path="/signup" element={ <FormSignup />} />  
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfileUser />} />
       </Route>
     )
 );

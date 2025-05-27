@@ -1,6 +1,6 @@
 import { use } from "react";
 import { useState } from "react";
-import { SignupFetch } from "../../services/apiFetch"
+import { signupFetch } from "../../services/apiFetch"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -49,7 +49,7 @@ export const FormSignup = () => {
 
 
     try {
-      const response = await SignupFetch(data_and_password)
+      const response = await signupFetch(data_and_password)
       console.log('usuario registrado', response)
       navigate('/')
     } catch (error) {

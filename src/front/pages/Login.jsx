@@ -1,8 +1,11 @@
 import {  useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { LoginFetch } from "../../services/apiFetch"
-export const Login =() => {
+import { loginFetch } from "../../services/apiFetch"
+import useGlobalReducer from "../hooks/useGlobalReducer"
 
+
+export const Login =() => {
+    const{dispatch} = useGlobalReducer()
     const navigate = useNavigate()
     const[ email,setEmail] = useState('')
     const [password,setpassword] = useState('')
@@ -16,9 +19,6 @@ const handleEvent = (e) => {
   if (name == 'password') setpassword(value)
 
 
-
-
-
 }
 const handleSubmit = async (e)=>{
   e.preventDefault()
@@ -29,9 +29,18 @@ const data_login = {
   }  
 
   try{
-    const response = await LoginFetch (data_login)
+    const response = await loginFetch (data_login)
     console.log ( 'login reealizado correctamente',response)
+   
+   
+       if (response.token) {
+      localStorage.setItem("jwt-token", response.token);
+    } else {
+      console.error("No se recibió token en la respuesta");
+    }
+    dispatch({ type: "loggin", payload: true });
     navigate ('/profile')
+  
 
  }catch (error) {
       console.log('hubo un error a la hora en registrar al usuario', error)
